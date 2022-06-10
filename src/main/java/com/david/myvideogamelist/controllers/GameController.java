@@ -22,6 +22,13 @@ public class GameController {
 
     @Autowired
     private GameRepository gameRepository;
+    @Autowired
+    private DeveloperRepository developerRepository;
+
+    public GameController(GameRepository gameRepository, DeveloperRepository developerRepository) {
+        this.gameRepository = gameRepository;
+        this.developerRepository = developerRepository;
+    }
 
     @GetMapping("/games")
     public String games(Model model) {
@@ -31,13 +38,16 @@ public class GameController {
     }
 
     @GetMapping("/games/new")
-    public String newGame(@ModelAttribute("game") Game game) {
+    public String newGame(Model model) {
+        model.addAttribute("game", new Game(""));
+        model.addAttribute("developer", developerRepository.findAll());
         return "/games/form";
     }
 
     @PostMapping("/games/save")
-    public String addGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult) {
+    public String addGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("developer", developerRepository.findAll());
             return "games/form";
         }
         gameRepository.save(game);
@@ -51,6 +61,7 @@ public class GameController {
             throw new IllegalArgumentException("Invalid Game");
         }
         model.addAttribute("game", gameOptional.get());
+        model.addAttribute("developer", developerRepository.findAll());
         return "games/form";
 
     }

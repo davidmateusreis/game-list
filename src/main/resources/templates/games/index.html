@@ -21,6 +21,8 @@
             <th>Release Date</th>
             <th>Developer</th>
             <th>Publisher</th>
+            <th>Genre</th>
+            <th>Region</th>
             <th>Management</th>
         </tr>
         </thead>
@@ -30,6 +32,8 @@
             <td th:text="${game.releaseDate}"></td>
             <td th:text="${game.developer}"></td>
             <td th:text="${game.publisher}"></td>
+            <td th:text="${game.genre}"></td>
+            <td th:text="${game.region}"></td>
             <td>
                 <a th:href="@{/games/{id}(id=${game.id})}" class="btn btn-primary">Update</a>
                 <a th:href="@{/games/delete/{id}(id=${game.id})}" class="btn btn-danger">Delete</a>

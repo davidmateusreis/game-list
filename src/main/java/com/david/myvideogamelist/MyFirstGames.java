@@ -27,39 +27,6 @@ public class MyFirstGames implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Game game1 = new Game("Super Mario World");
-        game1.setReleaseDate(LocalDate.of(1990, 11, 21));
-        game1.setGenre("Platformer");
-        game1.setRegion("Japan");
-        game1.setDeveloper(dev1);
-        game1.setPublisher(pub1);
-
-        Game game2 = new Game("Super Metroid");
-        game2.setReleaseDate(LocalDate.of(1994, 3, 19));
-        game2.setGenre("Platformer");
-        game2.setRegion("Japan");
-        game2.setDeveloper(dev1);
-        game2.setPublisher(pub1);
-
-        Game game3 = new Game("Donkey Kong Country");
-        game3.setReleaseDate(LocalDate.of(1994, 11, 21));
-        game3.setGenre("Platformer");
-        game3.setRegion("Japan");
-        game3.setDeveloper(dev1);
-        game3.setPublisher(pub1);
-
-        Game game4 = new Game("The Legend of Zelda: A Link to the Past");
-        game4.setReleaseDate(LocalDate.of(1991, 11, 21));
-        game4.setGenre("Platformer");
-        game4.setRegion("Japan");
-        game4.setDeveloper(dev1);
-        game4.setPublisher(pub1);
-
-        gameRepository.save(game1);
-        gameRepository.save(game2);
-        gameRepository.save(game3);
-        gameRepository.save(game4);
-
         Developer dev1 = new Developer("Nintendo");
         Developer dev2 = new Developer("Capcom");
         Developer dev3 = new Developer("Square");
@@ -82,6 +49,38 @@ public class MyFirstGames implements CommandLineRunner {
         publisherRepository.save(pub4);
         publisherRepository.flush();
 
+        Game game1 = new Game("Super Mario World");
+        game1.setReleaseDate(LocalDate.of(1990, 11, 21));
+        game1.setGenre("Platformer");
+        game1.setRegion("Japan");
+        game1.setDeveloper(dev1);
+        game1.setPublisher(pub1);
+
+        Game game2 = new Game("Super Metroid");
+        game2.setReleaseDate(LocalDate.of(1994, 3, 19));
+        game2.setGenre("Platformer");
+        game2.setRegion("Japan");
+        game2.setDeveloper(dev1);
+        game2.setPublisher(pub1);
+
+        Game game3 = new Game("Donkey Kong Country");
+        game3.setReleaseDate(LocalDate.of(1994, 11, 21));
+        game3.setGenre("Platformer");
+        game3.setRegion("Japan");
+        game3.setDeveloper(dev1);
+        game3.setPublisher(pub4);
+
+        Game game4 = new Game("The Legend of Zelda: A Link to the Past");
+        game4.setReleaseDate(LocalDate.of(1991, 11, 21));
+        game4.setGenre("Platformer");
+        game4.setRegion("Japan");
+        game4.setDeveloper(dev1);
+        game4.setPublisher(pub1);
+
+        gameRepository.save(game1);
+        gameRepository.save(game2);
+        gameRepository.save(game3);
+        gameRepository.save(game4);
 
     }
 }

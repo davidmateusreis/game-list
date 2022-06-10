@@ -23,6 +23,10 @@
         <input type="text" th:field="*{developer}" placeholder="Developer" class="form-control mb-4 col-4">
         <span th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}" class="text-danger"></span>
         <input type="text" th:field="*{publisher}" placeholder="Publisher" class="form-control mb-4 col-4">
+        <span th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}" class="text-danger"></span>
+        <input type="text" th:field="*{genre}" placeholder="Genre" class="form-control mb-4 col-4">
+        <span th:if="${#fields.hasErrors('region')}" th:errors="*{region}" class="text-danger"></span>
+        <input type="text" th:field="*{region}" placeholder="Region" class="form-control mb-4 col-4">
 
         <button type="submit" class="btn btn-info col-2">Save</button>
     </form>
