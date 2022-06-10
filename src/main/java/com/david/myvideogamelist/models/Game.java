@@ -97,6 +97,13 @@ public class Game {
         this.publisher = publisher;
     }
 
+    public String getPublisherName() {
+        if (publisher != null) {
+            return publisher.getName();
+        }
+        return "";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

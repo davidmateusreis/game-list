@@ -1,31 +1,35 @@
 package com.david.myvideogamelist.controllers;
 
+import com.david.myvideogamelist.dtos.AutoFillDTO;
 import com.david.myvideogamelist.models.Game;
+import com.david.myvideogamelist.models.Publisher;
 import com.david.myvideogamelist.repositories.DeveloperRepository;
 import com.david.myvideogamelist.repositories.GameRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.david.myvideogamelist.repositories.PublisherRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class GameController {
 
-    @Autowired
-    private GameRepository gameRepository;
-    @Autowired
-    private DeveloperRepository developerRepository;
 
-    public GameController(GameRepository gameRepository, DeveloperRepository developerRepository) {
+    private GameRepository gameRepository;
+    private DeveloperRepository developerRepository;
+    private PublisherRepository publisherRepository;
+
+    private List<Publisher> suggestsPublishers = new ArrayList<>(); //sugestões
+
+    public GameController(GameRepository gameRepository, DeveloperRepository developerRepository, PublisherRepository publisherRepository) {
         this.gameRepository = gameRepository;
         this.developerRepository = developerRepository;
+        this.publisherRepository = publisherRepository;
     }
 
     @GetMapping("/games")
@@ -72,5 +76,25 @@ public class GameController {
         }
         gameRepository.delete(gameOptional.get());
         return "redirect:/games";
+    }
+
+    @RequestMapping("/games/publisherNameAutoFill")
+    @ResponseBody
+    public List<AutoFillDTO> publisherNameAutoFill(@RequestParam("term") String term) { //retorna o termo buscado
+        List<AutoFillDTO> suggests = new ArrayList<>();
+        try {
+            if (term.length() == 3) {
+                suggestsPublishers = publisherRepository.searchByName(term);
+            }
+            for (Publisher publisher : suggestsPublishers) {
+                if (publisher.getName().toLowerCase().contains(term.toLowerCase())) {
+                    AutoFillDTO dto = new AutoFillDTO(publisher.getName(), Long.toString(publisher.getId()));
+                    suggests.add(dto);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return suggests;
     }
 }
