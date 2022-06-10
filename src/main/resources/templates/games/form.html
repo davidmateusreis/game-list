@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Video Game List</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+    <h1>My Video Game List</h1>
+    <hr>
+    <h2>Add a New Game</h2>
+    <form action="#" th:action="@{/games/save}" th:object="${game}" method="POST">
+        <input type="hidden" id="id" th:field="*{id}">
+        <input type="text" th:field="*{title}" placeholder="Title" class="form-control mb-4 col-4">
+        <input type="date" th:field="*{releaseDate}" placeholder="Release Date" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{developer}" placeholder="Developer" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{publisher}" placeholder="Publisher" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+    </form>
+    <hr>
+    <a th:href="@{/games}">Back to the Game List</a>
+</div>
+</body>
+</html>
