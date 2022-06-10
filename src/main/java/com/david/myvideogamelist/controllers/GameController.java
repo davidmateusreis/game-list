@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 @Controller
 public class GameController {
@@ -30,6 +33,27 @@ public class GameController {
     @PostMapping("/games/save")
     public String addGame(@ModelAttribute("game") Game game) {
         gameRepository.save(game);
+        return "redirect:/games";
+    }
+
+    @GetMapping("/games/{id}")
+    public String updateGame(@PathVariable("id") long id, Model model) {
+        Optional<Game> gameOptional = gameRepository.findById(id); //evitar problemas com valores nulos
+        if (gameOptional.isEmpty()) {
+            throw new IllegalArgumentException("Invalid Game");
+        }
+        model.addAttribute("game", gameOptional.get());
+        return "games/form";
+
+    }
+
+    @GetMapping("/games/delete/{id}") //poderia ser DeleteMapping, mas HTML só suporta GET e POST
+    public String deleteGame(@PathVariable("id") long id, Model model) {
+        Optional<Game> gameOptional = gameRepository.findById(id);
+        if (gameOptional.isEmpty()) {
+            throw new IllegalArgumentException("Invalid Game");
+        }
+        gameRepository.delete(gameOptional.get());
         return "redirect:/games";
     }
 }
