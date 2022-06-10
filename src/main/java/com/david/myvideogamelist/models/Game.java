@@ -4,7 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -23,10 +22,15 @@ public class Game {
     private LocalDate releaseDate;
     @NotBlank(message = "Can not be blank")
     @Column(nullable = false)
-    private String developer;
+    private String genre;
     @NotBlank(message = "Can not be blank")
     @Column(nullable = false)
-    private String publisher;
+    private String region;
+
+    @ManyToOne(optional = false)
+    private Developer developer;
+    @ManyToOne
+    private Publisher publisher;
 
     @Deprecated
     protected Game() {
@@ -61,19 +65,35 @@ public class Game {
         this.releaseDate = releaseDate;
     }
 
-    public String getDeveloper() {
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public Developer getDeveloper() {
         return developer;
     }
 
-    public void setDeveloper(String developer) {
+    public void setDeveloper(Developer developer) {
         this.developer = developer;
     }
 
-    public String getPublisher() {
+    public Publisher getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(String publisher) {
+    public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
 
@@ -96,8 +116,8 @@ public class Game {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", releaseDate=" + releaseDate +
-                ", developer='" + developer + '\'' +
-                ", publisher='" + publisher + '\'' +
+                ", developer='" + genre + '\'' +
+                ", publisher='" + region + '\'' +
                 '}';
     }
 }

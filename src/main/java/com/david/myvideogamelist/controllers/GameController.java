@@ -1,7 +1,10 @@
 package com.david.myvideogamelist.controllers;
 
+import com.david.myvideogamelist.models.Developer;
 import com.david.myvideogamelist.models.Game;
+import com.david.myvideogamelist.repositories.DeveloperRepository;
 import com.david.myvideogamelist.repositories.GameRepository;
+import com.david.myvideogamelist.repositories.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
