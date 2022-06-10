@@ -1,10 +1,8 @@
 package com.david.myvideogamelist.controllers;
 
-import com.david.myvideogamelist.models.Developer;
 import com.david.myvideogamelist.models.Game;
 import com.david.myvideogamelist.repositories.DeveloperRepository;
 import com.david.myvideogamelist.repositories.GameRepository;
-import com.david.myvideogamelist.repositories.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,14 +38,14 @@ public class GameController {
     @GetMapping("/games/new")
     public String newGame(Model model) {
         model.addAttribute("game", new Game(""));
-        model.addAttribute("developer", developerRepository.findAll());
+        model.addAttribute("developers", developerRepository.findAll());
         return "/games/form";
     }
 
     @PostMapping("/games/save")
     public String addGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("developer", developerRepository.findAll());
+            model.addAttribute("developers", developerRepository.findAll());
             return "games/form";
         }
         gameRepository.save(game);
@@ -61,7 +59,7 @@ public class GameController {
             throw new IllegalArgumentException("Invalid Game");
         }
         model.addAttribute("game", gameOptional.get());
-        model.addAttribute("developer", developerRepository.findAll());
+        model.addAttribute("developers", developerRepository.findAll());
         return "games/form";
 
     }
