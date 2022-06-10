@@ -22,6 +22,15 @@ public class Game {
     private String developer;
     private String publisher;
 
+    @Deprecated
+    protected Game() {
+
+    }
+
+    public Game(String title) {
+        this.title = title;
+    }
+
     public Long getId() {
         return id;
     }
