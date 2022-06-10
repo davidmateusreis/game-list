@@ -5,11 +5,13 @@ import com.david.myvideogamelist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -31,7 +33,10 @@ public class GameController {
     }
 
     @PostMapping("/games/save")
-    public String addGame(@ModelAttribute("game") Game game) {
+    public String addGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "games/form";
+        }
         gameRepository.save(game);
         return "redirect:/games";
     }

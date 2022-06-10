@@ -13,12 +13,15 @@
 <div class="container my-2">
     <h1>My Video Game List</h1>
     <hr>
-    <h2>Add a New Game</h2>
+    <h2>Update or Add a New Game</h2>
     <form action="#" th:action="@{/games/save}" th:object="${game}" method="POST">
         <input type="hidden" id="id" th:field="*{id}">
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
         <input type="text" th:field="*{title}" placeholder="Title" class="form-control mb-4 col-4">
         <input type="date" th:field="*{releaseDate}" placeholder="Release Date" class="form-control mb-4 col-4">
+        <span th:if="${#fields.hasErrors('developer')}" th:errors="*{developer}" class="text-danger"></span>
         <input type="text" th:field="*{developer}" placeholder="Developer" class="form-control mb-4 col-4">
+        <span th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}" class="text-danger"></span>
         <input type="text" th:field="*{publisher}" placeholder="Publisher" class="form-control mb-4 col-4">
 
         <button type="submit" class="btn btn-info col-2">Save</button>

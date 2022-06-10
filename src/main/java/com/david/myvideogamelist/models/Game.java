@@ -2,10 +2,9 @@ package com.david.myvideogamelist.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -16,10 +15,17 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Can not be blank")
+    @Column(nullable = false)
     private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
     private LocalDate releaseDate;
+    @NotBlank(message = "Can not be blank")
+    @Column(nullable = false)
     private String developer;
+    @NotBlank(message = "Can not be blank")
+    @Column(nullable = false)
     private String publisher;
 
     @Deprecated
