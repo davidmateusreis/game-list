@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>My Video Game List</title>
@@ -11,6 +11,22 @@
 
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light"
+     role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="btn-outline-primary" href="#">My Video Game List</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+                <form name="logoutForm" th:action="@{/logout}" method="post">
+                    <label>Olá, <span sec:authentication="name">Usuário</span>!</label>
+                    <input class="btn btn-outline-danger" type="submit" value="Logout" />
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container my-2">
     <a th:href="@{/games/new}" class="btn btn-primary btn-sm mb-3">Add a Game</a>
     <h1>Games</h1>
@@ -19,6 +35,8 @@
         <tr>
             <th>Title</th>
             <th>Release Date</th>
+            <th>Developer</th>
+            <th>Publisher</th>
             <th>Genre</th>
             <th>Region</th>
             <th>Management</th>
@@ -28,6 +46,8 @@
         <tr th:each="game : ${gameList}">
             <td th:text="${game.title}"></td>
             <td th:text="${game.releaseDate}"></td>
+            <td th:text="${game.developer.name}"></td>
+            <td th:text="${game.publisherName}"></td>
             <td th:text="${game.genre}"></td>
             <td th:text="${game.region}"></td>
             <td>
