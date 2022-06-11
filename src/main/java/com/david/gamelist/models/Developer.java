@@ -1,4 +1,4 @@
-package com.david.myvideogamelist.models;
+package com.david.gamelist.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
-public class Publisher {
+public class Developer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,11 +18,11 @@ public class Publisher {
     private String foundedDate;
 
     @Deprecated
-    public Publisher() {
+    public Developer() {
 
     }
 
-    public Publisher(String name) {
+    public Developer(String name) {
         this.name = name;
     }
 
@@ -54,21 +54,12 @@ public class Publisher {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Publisher publisher = (Publisher) o;
-        return id.equals(publisher.id);
+        Developer developer = (Developer) o;
+        return id.equals(developer.id);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Publisher{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", foundedDate='" + foundedDate + '\'' +
-                '}';
     }
 }

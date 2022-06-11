@@ -1,11 +1,11 @@
-package com.david.myvideogamelist.controllers;
+package com.david.gamelist.controllers;
 
-import com.david.myvideogamelist.dtos.AutoFillDTO;
-import com.david.myvideogamelist.models.Game;
-import com.david.myvideogamelist.models.Publisher;
-import com.david.myvideogamelist.repositories.DeveloperRepository;
-import com.david.myvideogamelist.repositories.GameRepository;
-import com.david.myvideogamelist.repositories.PublisherRepository;
+import com.david.gamelist.dtos.AutoFillDTO;
+import com.david.gamelist.models.Game;
+import com.david.gamelist.models.Publisher;
+import com.david.gamelist.repositories.DeveloperRepository;
+import com.david.gamelist.repositories.GameRepository;
+import com.david.gamelist.repositories.PublisherRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

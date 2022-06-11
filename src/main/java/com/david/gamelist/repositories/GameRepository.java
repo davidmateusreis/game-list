@@ -1,6 +1,6 @@
-package com.david.myvideogamelist.repositories;
+package com.david.gamelist.repositories;
 
-import com.david.myvideogamelist.models.Game;
+import com.david.gamelist.models.Game;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

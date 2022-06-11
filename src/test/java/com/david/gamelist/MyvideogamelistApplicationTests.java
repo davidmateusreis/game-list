@@ -1,4 +1,4 @@
-package com.david.myvideogamelist;
+package com.david.gamelist;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

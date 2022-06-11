@@ -1,4 +1,4 @@
-package com.david.myvideogamelist.dtos;
+package com.david.gamelist.dtos;
 
 public class AutoFillDTO {
 

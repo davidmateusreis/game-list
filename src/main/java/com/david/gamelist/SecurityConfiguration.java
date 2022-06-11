@@ -1,4 +1,4 @@
-package com.david.myvideogamelist;
+package com.david.gamelist;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

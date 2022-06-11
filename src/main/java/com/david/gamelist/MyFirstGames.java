@@ -1,11 +1,11 @@
-package com.david.myvideogamelist;
+package com.david.gamelist;
 
-import com.david.myvideogamelist.models.Developer;
-import com.david.myvideogamelist.models.Game;
-import com.david.myvideogamelist.models.Publisher;
-import com.david.myvideogamelist.repositories.DeveloperRepository;
-import com.david.myvideogamelist.repositories.GameRepository;
-import com.david.myvideogamelist.repositories.PublisherRepository;
+import com.david.gamelist.models.Developer;
+import com.david.gamelist.models.Game;
+import com.david.gamelist.models.Publisher;
+import com.david.gamelist.repositories.DeveloperRepository;
+import com.david.gamelist.repositories.GameRepository;
+import com.david.gamelist.repositories.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

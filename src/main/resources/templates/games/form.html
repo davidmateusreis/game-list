@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>My Video Game List</title>
+    <title>Game List</title>
 
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -36,7 +36,7 @@
 <body>
 <header th:insert="fragments/general.html :: header"> </header>
 <div class="container my-2">
-    <h1>My Video Game List</h1>
+    <h1>Game List</h1>
     <hr>
     <h2>Update or Add a New Game</h2>
     <form action="#" th:action="@{/games/save}" th:object="${game}" method="POST">

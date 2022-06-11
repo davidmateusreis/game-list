@@ -1,13 +1,13 @@
-package com.david.myvideogamelist;
+package com.david.gamelist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MyvideogamelistApplication {
+public class GamelistApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MyvideogamelistApplication.class, args);
+		SpringApplication.run(GamelistApplication.class, args);
 	}
 
 }

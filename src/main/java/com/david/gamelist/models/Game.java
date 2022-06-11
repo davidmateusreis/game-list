@@ -1,4 +1,4 @@
-package com.david.myvideogamelist.models;
+package com.david.gamelist.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
